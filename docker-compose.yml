@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  valapp:
+    build: .
+    ports:
+      - "8000:5000"
+    volumes:
+      - ./app:/code
+    environment:
+      FLASK_DEBUG: "true"
+  redis:
+    image: "redis:alpine"
