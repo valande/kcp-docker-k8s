@@ -1,2 +1,2 @@
-# contkube-pablo
-Repo práctica final - Contenedores, más que VMs
+# Práctica Pablo Cazallas - Contenedores, más que VMs (WIP)
+

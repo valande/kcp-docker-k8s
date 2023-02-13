@@ -1,0 +1,10 @@
+
+/ejercicios
+/pruebas
+
+
+#*/.vagrant
+#.vagrant
+#*.vmdk
+#*.log
+#.DS_Store
