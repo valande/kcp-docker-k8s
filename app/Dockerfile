@@ -8,9 +8,10 @@ RUN apk add --no-cache \
     linux-headers
 
 WORKDIR /code
-COPY . .
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+COPY . .
 RUN addgroup -S appuser && \
     adduser -S appuser -G appuser && \
     chown -R appuser:appuser /code
