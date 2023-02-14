@@ -1,6 +1,7 @@
 version: "3.9"
 
 services:
+
   valapp:
     #build: 
     #  context: ./app
@@ -23,6 +24,7 @@ services:
       REDIS_HOST: "valredis"
       REDIS_PORT: "6379"
     restart: unless-stopped
+
   valredis:
     image: "redis:alpine"
     restart: unless-stopped
@@ -32,7 +34,8 @@ services:
       - redis_data:/data
 
 volumes:
-  redis_data: {}
+  redis_data:
+    name: redis_data
 
 networks:
   valnet:
