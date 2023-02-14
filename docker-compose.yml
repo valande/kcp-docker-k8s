@@ -2,12 +2,14 @@ version: "3.9"
 
 services:
   valapp:
-    build: 
-      context: ./app
-      dockerfile: Dockerfile
-    image: valapp:0.1
+    #build: 
+    #  context: ./app
+    #  dockerfile: Dockerfile
+    image: valande/valapp:1.0-beta
     depends_on:
-      - redis
+      - valredis
+    networks:
+      - valnet
     ports:
       - "8000:5000"
     #volumes:
@@ -18,14 +20,20 @@ services:
       FLASK_APP: "valapp.py"
       FLASK_RUN_HOST: "0.0.0.0"
       FLASK_DEBUG: "true"
-      REDIS_HOST: "redis"
+      REDIS_HOST: "valredis"
       REDIS_PORT: "6379"
     restart: unless-stopped
-  redis:
+  valredis:
     image: "redis:alpine"
     restart: unless-stopped
+    networks:
+      - valnet
     volumes:
       - redis_data:/data
 
 volumes:
   redis_data: {}
+
+networks:
+  valnet:
+    name: valnet
