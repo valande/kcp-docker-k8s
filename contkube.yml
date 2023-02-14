@@ -3,23 +3,23 @@ services:
     build: 
       context: ./app
       dockerfile: ../Dockerfile
-    image: valande/valapp:1.0-beta
+    image: $VALAPP_IMAGE
     depends_on:
       - valredis
     networks:
       - valnet
     ports:
-      - "8000:5000"
+      - $VALAPP_PORT_EXTERNAL:$VALAPP_PORT_INTERNAL
     environment:
-      FLASK_APP: "valapp.py"
-      FLASK_RUN_HOST: "0.0.0.0"
-      FLASK_DEBUG: "true"
-      REDIS_HOST: "valredis"
-      REDIS_PORT: "6379"
+      FLASK_APP: $FLASK_APP
+      FLASK_RUN_HOST: $FLASK_RUN_HOST
+      FLASK_DEBUG: true
+      REDIS_HOST: $REDIS_HOST
+      REDIS_PORT: $REDIS_PORT
     restart: unless-stopped
 
   valredis:
-    image: "redis:alpine"
+    image: $REDIS_IMAGE
     restart: unless-stopped
     networks:
       - valnet
