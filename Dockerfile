@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------
-FROM python:3.7-alpine as pip-install
+FROM python:3.9.16-alpine3.17 as compile-stage
 
 RUN apk add --no-cache \
     gcc \
@@ -17,7 +17,7 @@ LABEL version=1.0-beta \
       description="Imagen para practica Contenedores y Kubernetes" \
       mantainer="Valande <valande@gmail.com>"
 
-COPY --from=pip-install /pyinstall /usr/local
+COPY --from=compile-stage /pyinstall /usr/local
 WORKDIR /code
 COPY . ./
 RUN rm ./requirements.txt && \
