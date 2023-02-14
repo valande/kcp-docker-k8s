@@ -35,20 +35,20 @@ def get_hit_count():
 
 @app.route('/')
 def hello():
-    #logger.info("test log statement")
     correlation_id = json_logging.get_correlation_id()
     count = get_hit_count()
     return 'Hello from Docker! I have been seen {} times.\n'.format(count)
 
+@app.route('/ping')
+def ping():
+    return 'pong\n'
+
 @app.route('/correl')
 def correl():
-    #logger.info("correl")
     correl_id = get_correl()
     return 'json logger correlation id: {}\n'.format(correl_id)
 
 @app.route('/forcerr')
 def forcerr():
-    #logger.error("forcerr")
-    #logger.error("forcerr with extra props", extra={'props': {"extra_property": 'extra_value'}})
     correl_id = get_correl()
-    return 'json logger correlation id: {}\n'.format(correl_id)
+    return 'json logger forced error\n'
