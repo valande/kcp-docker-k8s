@@ -1,19 +1,20 @@
 import datetime
 import logging
 import sys
+import os
 import json_logging
 import redis
 
 from flask import Flask
 
+redis_host = os.environ['REDIS_HOST'] or 'redis'
+redis_port = os.environ['REDIS_PORT'] or 6379
+cache = redis.Redis(host=redis_host, port=redis_port)
 
-cache = redis.Redis(host='redis', port=6379)
 app = Flask(__name__)
 
 json_logging.init_flask(enable_json=True)
 json_logging.init_request_instrument(app)
-
-# init the logger as usual
 logger = logging.getLogger("valogger")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stdout))

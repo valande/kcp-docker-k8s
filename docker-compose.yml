@@ -1,12 +1,29 @@
 version: "3.9"
 services:
   valapp:
-    build: .
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    image: valapp:0.1
+    depends_on:
+      - redis
     ports:
       - "8000:5000"
     volumes:
-      - ./app:/code
+      - type: bind
+        source: ./app
+        target: /code
     environment:
+      FLASK_APP: "valapp.py"
+      FLASK_RUN_HOST: "0.0.0.0"
       FLASK_DEBUG: "true"
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+    restart: unless-stopped
   redis:
     image: "redis:alpine"
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+volumes:
+  redis_data: {}
