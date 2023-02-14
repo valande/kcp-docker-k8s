@@ -7,7 +7,7 @@ RUN apk add --no-cache \
     linux-headers
 
 WORKDIR /code
-COPY requirements.txt ./requirements.txt
+COPY ./requirements.txt ./requirements.txt
 RUN pip install --prefix=/pyinstall -r requirements.txt 
     
 # ----------------------------------------------------------------------
@@ -19,7 +19,7 @@ LABEL version=1.0-beta \
 
 COPY --from=compile-stage /pyinstall /usr/local
 WORKDIR /code
-COPY . ./
+COPY . .
 RUN rm ./requirements.txt && \
     addgroup -S appuser && \
     adduser -S appuser -G appuser && \
