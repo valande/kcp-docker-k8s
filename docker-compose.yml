@@ -10,10 +10,10 @@ services:
       - redis
     ports:
       - "8000:5000"
-    volumes:
-      - type: bind
-        source: ./app
-        target: /code
+    #volumes:
+    #  - type: bind
+    #    source: ./app
+    #    target: /code
     environment:
       FLASK_APP: "valapp.py"
       FLASK_RUN_HOST: "0.0.0.0"
