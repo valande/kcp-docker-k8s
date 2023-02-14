@@ -1,5 +1,5 @@
-# syntax=docker/dockerfile:1
 FROM python:3.7-alpine
+
 LABEL mantainer="valande@gmail.com"
 
 RUN apk add --no-cache \
@@ -8,13 +8,9 @@ RUN apk add --no-cache \
     linux-headers
 
 WORKDIR /code
-COPY requirements.txt requirements.txt
-RUN ls -l && pip install -r requirements.txt
-
-ENV FLASK_APP=valapp.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV REDIS_HOST=redis
-ENV REDIS_PORT=6379
-EXPOSE 5000
 COPY . .
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
 CMD ["flask", "run"]

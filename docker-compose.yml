@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   valapp:
     build: 
@@ -25,5 +26,6 @@ services:
     restart: unless-stopped
     volumes:
       - redis_data:/data
+
 volumes:
   redis_data: {}
