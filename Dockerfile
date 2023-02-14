@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------
-FROM python:3.7-alpine as pip-install
+FROM python:3.7-alpine as compile-stage
 
 RUN apk add --no-cache \
     gcc \
