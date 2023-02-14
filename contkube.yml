@@ -7,7 +7,7 @@ services:
     depends_on:
       - valredis
     networks:
-      - valnet
+      - $NETWORK_NAME
     ports:
       - $VALAPP_PORT_EXTERNAL:$VALAPP_PORT_INTERNAL
     environment:
@@ -22,7 +22,7 @@ services:
     image: $REDIS_IMAGE
     restart: unless-stopped
     networks:
-      - valnet
+      - $NETWORK_NAME
     volumes:
       - redis_data:/data
 
@@ -32,4 +32,4 @@ volumes:
 
 networks:
   valnet:
-    name: valnet
+    name: $NETWORK_NAME
