@@ -1,4 +1,4 @@
-import datetime
+from datetime import time
 import logging
 import sys
 import os
@@ -16,8 +16,11 @@ app = Flask(__name__)
 json_logging.init_flask(enable_json=True)
 json_logging.init_request_instrument(app)
 logger = logging.getLogger("valogger")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler(sys.stdout))
+
+def get_correl():
+    return json_logging.get_correlation_id()
 
 def get_hit_count():
     retries = 5
@@ -30,25 +33,22 @@ def get_hit_count():
             retries -= 1
             time.sleep(0.5)
 
-def get_correl():
-    return json_logging.get_correlation_id()
-
 @app.route('/')
 def hello():
-    logger.info("test log statement")
+    #logger.info("test log statement")
     correlation_id = json_logging.get_correlation_id()
     count = get_hit_count()
     return 'Hello from Docker! I have been seen {} times.\n'.format(count)
 
 @app.route('/correl')
 def correl():
-    logger.info("correl")
+    #logger.info("correl")
     correl_id = get_correl()
     return 'json logger correlation id: {}\n'.format(correl_id)
 
 @app.route('/forcerr')
 def forcerr():
-    logger.error("forcerr")
-    logger.error("forcerr with extra props", extra={'props': {"extra_property": 'extra_value'}})
+    #logger.error("forcerr")
+    #logger.error("forcerr with extra props", extra={'props': {"extra_property": 'extra_value'}})
     correl_id = get_correl()
     return 'json logger correlation id: {}\n'.format(correl_id)
