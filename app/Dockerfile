@@ -11,6 +11,11 @@ WORKDIR /code
 COPY . .
 RUN pip install -r requirements.txt
 
+ENV FLASK_APP=valapp.py
+ENV FLASK_ENV=development
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV REDIS_HOST=redis
+ENV REDIS_PORT=6379
 EXPOSE 5000
 
 CMD ["flask", "run"]
