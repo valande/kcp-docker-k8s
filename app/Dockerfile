@@ -1,8 +1,5 @@
+# ----------------------------------------------------------------------
 FROM python:3.7-alpine as pip-install
-
-LABEL version=0.1
-LABEL description="Imagen para practica Contenedores y Kubernetes"
-LABEL mantainer="Valande <valande@gmail.com>"
 
 RUN apk add --no-cache \
     gcc \
@@ -11,9 +8,15 @@ RUN apk add --no-cache \
 
 WORKDIR /code
 COPY requirements.txt ./requirements.txt
-RUN pip install --prefix=/pyinstall -r requirements.txt
+RUN pip install --prefix=/pyinstall -r requirements.txt 
+    
+# ----------------------------------------------------------------------
+FROM python:3.7-alpine as runtime
 
-FROM python:3.7-alpine
+LABEL version=1.0-beta \
+      description="Imagen para practica Contenedores y Kubernetes" \
+      mantainer="Valande <valande@gmail.com>"
+
 COPY --from=pip-install /pyinstall /usr/local
 WORKDIR /code
 COPY . ./
