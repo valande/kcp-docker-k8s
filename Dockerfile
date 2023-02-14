@@ -17,7 +17,7 @@ LABEL version=1.0-beta \
       description="Imagen para practica Contenedores y Kubernetes" \
       mantainer="Valande <valande@gmail.com>"
 
-COPY --from=pip-install /pyinstall /usr/local
+COPY --from=compile-stage /pyinstall /usr/local
 WORKDIR /code
 COPY . ./
 RUN rm ./requirements.txt && \
