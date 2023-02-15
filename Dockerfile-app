@@ -13,8 +13,8 @@ RUN pip install --prefix=/pyinstall -r requirements.txt
 # ----------------------------------------------------------------------
 FROM python:3.7-alpine as runtime
 
-LABEL version=1.0-beta \
-      description="Imagen para practica Contenedores y Kubernetes" \
+LABEL version=1.0-pg-beta \
+      description="Imagen APP para practica Contenedores y Kubernetes" \
       mantainer="Valande <valande@gmail.com>"
 
 COPY --from=compile-stage /pyinstall /usr/local
@@ -27,11 +27,14 @@ RUN rm ./requirements.txt && \
 
 USER appuser
 
+ENV DB_HOST=valpg
+ENV DB_PORT=5432
+ENV DB_NAME=flask_db
+ENV DB_USERNAME=postgres
+ENV DB_PASSWORD=postgres
 ENV FLASK_APP=valapp.py
-ENV FLASK_ENV=development
+ENV FLASK_DEBUG=true
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV REDIS_HOST=redis
-ENV REDIS_PORT=6379
 EXPOSE 5000
 
 CMD ["flask", "run"]
