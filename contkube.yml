@@ -3,7 +3,7 @@ services:
   valdb:
     build: 
       context: ./db
-      dockerfile: ../Dockerfile-db
+      dockerfile: ../docker/Dockerfile-db
     image: $DB_IMAGE
     networks:
       - $NETWORK_NAME
@@ -21,7 +21,7 @@ services:
   valapp:
     build: 
       context: ./app
-      dockerfile: ../Dockerfile-app
+      dockerfile: ../docker/Dockerfile-app
     image: $APP_IMAGE
     depends_on:
       - valdb
