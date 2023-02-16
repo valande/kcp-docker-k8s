@@ -27,11 +27,11 @@ RUN rm ./requirements.txt && \
 
 USER appuser
 
-ENV DB_HOST=valpg
+ENV DB_HOSTNAME=valpg
 ENV DB_PORT=5432
 ENV DB_NAME=flask_db
-ENV DB_USERNAME=postgres
-ENV DB_PASSWORD=postgres
+ENV DB_USERNAME=dbuser
+ENV DB_PASSWORD=dbpass
 ENV FLASK_APP=valapp.py
 ENV FLASK_DEBUG=true
 ENV FLASK_RUN_HOST=0.0.0.0

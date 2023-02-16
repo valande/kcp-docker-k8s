@@ -6,7 +6,6 @@ LABEL version=1.0-pg-beta \
       mantainer="Valande <valande@gmail.com>"
 
 COPY ./*.sh /docker-entrypoint-initdb.d/
-RUN chown postgres:postgres /docker-entrypoint-initdb.d/*
 
 ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
 CMD [ "postgres" ]
