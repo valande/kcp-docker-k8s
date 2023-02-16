@@ -1,6 +1,6 @@
 services:
 
-  valpg:
+  valdb:
     build: 
       context: ./db
       dockerfile: ../Dockerfile-db
@@ -24,7 +24,7 @@ services:
       dockerfile: ../Dockerfile-app
     image: $APP_IMAGE
     depends_on:
-      - valpg
+      - valdb
     networks:
       - $NETWORK_NAME
     ports:
