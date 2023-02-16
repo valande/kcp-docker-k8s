@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx # Nombre DNS del servicio
+spec:
+  type: ClusterIP  # TIPO (lo iremos cambiando)
+  selector: # SELECTOR DE PODS (ENDPOINTS FINALES DEL SERVICIO)
+    app: nginx
+  ports: # Puertos que abre el servicio
+  - protocol: TCP
+    port: 80 # Puerto de escucha del servicio. PODEMOS ELEGIRLO.
+    targetPort: 80  # Puerto de escucha del pod. HA DE SER EL CORRECTO.
