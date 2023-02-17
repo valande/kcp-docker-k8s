@@ -1,1 +1,15 @@
-# db-config ConfigMap 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dbconfig
+  namespace: practica
+data:
+  DB_IMAGE: valande/valdb:1.0
+  DB_HOSTNAME: valdb
+  DB_PORT_INTERNAL: "5432"
+  DB_PORT_EXTERNAL: "7777"
+  POSTGRES_DB: flask_db
+  POSTGRES_USER: dbuser
+  POSTGRES_PASSWORD: dbpass
+  PGDATA: /var/lib/postgresql/data/pgdata
+  DB_VOLUME_DIR: /var/lib/postgresql/data
