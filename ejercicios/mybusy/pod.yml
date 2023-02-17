@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mybusy
+  namespace: keepcoding
+spec:
+  containers:
+  - name: mybusy
+    image: busybox
+    args: 
+      - /usr/bin/env
