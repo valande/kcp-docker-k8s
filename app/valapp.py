@@ -30,7 +30,7 @@ def player_exists(player):
 db_name = os.environ['DB_NAME'] or 'flask_db'
 db_user = os.environ['DB_USERNAME'] or 'dbuser'
 db_pass = os.environ['DB_PASSWORD'] or 'dbpass'
-db_host = os.environ['DB_HOSTNAME'] or 'valpg'
+db_host = os.environ['DB_HOSTNAME'] or 'database'
 db_port = os.environ['DB_PORT'] or 5432
 
 app = Flask(__name__)

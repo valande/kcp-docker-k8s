@@ -1,6 +1,6 @@
 services:
 
-  valdb:
+  database:
     build: 
       context: ./db
       dockerfile: ../docker/Dockerfile-db
@@ -24,7 +24,7 @@ services:
       dockerfile: ../docker/Dockerfile-app
     image: $APP_IMAGE
     depends_on:
-      - valdb
+      - database
     networks:
       - $NETWORK_NAME
     ports:

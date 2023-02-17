@@ -10,7 +10,7 @@ spec:
     name: web
   clusterIP: None
   selector:
-    app: valdb
+    app: database
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -19,13 +19,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: valdb
+      app: database
   serviceName: "valdb-headless"
   replicas: 1
   template:
     metadata:
       labels:
-        app: valdb
+        app: database
     spec:
       terminationGracePeriodSeconds: 10
       containers:

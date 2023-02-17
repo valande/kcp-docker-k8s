@@ -4,13 +4,12 @@ metadata:
   name: appconfig
   namespace: practica
 data:
-  APP_IMAGE: valande/valapp:1.0
   APP_PORT_EXTERNAL: "8000"
   APP_PORT_INTERNAL: "5000"
   FLASK_APP: valapp.py
   FLASK_DEBUG: "true"
   FLASK_RUN_HOST: "0.0.0.0"
-  DB_HOSTNAME: valdb
+  DB_HOSTNAME: database
   DB_PORT_INTERNAL: "5432"
   DB_NAME: flask_db
   DB_USERNAME: dbuser
