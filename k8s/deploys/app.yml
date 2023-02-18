@@ -14,7 +14,7 @@ spec:
         app: microservice
     spec:
       containers:
-      - name: valapp
+      - name: microservice
         image: valande/microservice
         envFrom:
         - configMapRef:
