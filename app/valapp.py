@@ -118,3 +118,7 @@ def reset():
     conn.commit()
     conn.close()
     return index()
+
+@app.route('/ping')
+def reset():
+    return "pong\n"
