@@ -6,18 +6,35 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: valapp
+      app: microservice
   replicas: 3
   template:
     metadata:
       labels:
-        app: valapp
+        app: microservice
     spec:
       containers:
       - name: valapp
         image: valande/valapp:1.0
         envFrom:
         - configMapRef:
-            name: appconfig
+            name: microservice-config
+        env:
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: private
+              key: POSTGRES_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: private
+              key: POSTGRES_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: database-config
+              key: POSTGRES_DB
         ports:
         - containerPort: 5000
+          name: microservice
