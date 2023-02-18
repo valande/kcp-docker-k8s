@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: valdb
-        image: valande/valdb:1.0
+        image: valande/database
         envFrom:
         - configMapRef:
             name: database-config
