@@ -9,5 +9,4 @@ data:
   FLASK_APP: valapp.py
   FLASK_DEBUG: "true"
   FLASK_RUN_HOST: "0.0.0.0"
-  DB_HOSTNAME: svc-database
-  DB_PORT: "5432"
+  DB_SERVICE: svc-database

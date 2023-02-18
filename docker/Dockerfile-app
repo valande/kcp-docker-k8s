@@ -28,7 +28,7 @@ RUN rm ./requirements.txt && \
 USER appuser
 
 ENV DB_PORT=5432
-ENV DB_HOSTNAME=svc-database
+ENV DB_SERVICE=svc-database
 ENV DB_NAME=flask_db
 ENV DB_USERNAME=dbuser
 ENV DB_PASSWORD=dbpass
