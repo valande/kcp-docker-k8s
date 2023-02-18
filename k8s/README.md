@@ -1,3 +1,5 @@
+<a name="main"></a>
+# __Instrucciones para ejecutar en Kubernetes__
 ## TO DO:
 
 * Describe los recursos creados y documenta lo que sea configurable
@@ -6,6 +8,8 @@
   Backend (StatefulSet + Service + Headless)
   Configuración de microservicio (ConfigMap)
   Configuración de backend (ConfigMap)
+
+
 
 * Incluye instrucciones de despliegue en kubernetes y cómo probar
   la aplicación y el correcto funcionamiento
@@ -28,3 +32,11 @@
   kubectl describe svc -o wide
 
   ...
+
+# Índice de contenidos
+
+* [__Descripción__](../README.md#main)
+* [__Funcionamiento__](../README.md#arch)
+* [__Instalación y Configuración__](../README.md#setup)
+* [__Instrucciones para ejecutar en entorno local__](../README.md#rc_local)
+* [__Instrucciones para ejecutar en Kubernetes__](#main)
