@@ -2,7 +2,7 @@ services:
 
   svc-database:
     build: 
-      context: ./db
+      context: ./dbinit
       dockerfile: ../docker/Dockerfile-db
     image: $DB_IMAGE
     networks:
@@ -20,7 +20,7 @@ services:
 
   microservice:
     build: 
-      context: ./app
+      context: ./microservice
       dockerfile: ../docker/Dockerfile-app
     image: $APP_IMAGE
     depends_on:
