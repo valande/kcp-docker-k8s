@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
     
 volumes:
-  pgdata:
+  pg-data:
     name: pg-data
 
 networks:
