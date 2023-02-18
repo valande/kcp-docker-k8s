@@ -120,5 +120,5 @@ def reset():
     return index()
 
 @app.route('/ping')
-def reset():
+def ping():
     return "pong\n"
