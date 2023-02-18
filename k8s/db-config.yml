@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: dbconfig
+  name: database-config
   namespace: practica
 data:
-  DB_PORT_INTERNAL: "5432"
-  DB_PORT_EXTERNAL: "7777"
-  POSTGRES_DB: flask_db
-  POSTGRES_USER: dbuser
-  POSTGRES_PASSWORD: dbpass
-  PGDATA: /var/lib/postgresql/data/pgdata
+  DB_TUNNEL_PORT: "7777"
+  DB_PORT: "5432"
   DB_VOLUME_DIR: /var/lib/postgresql/data
+  POSTGRES_DB: flask_db
+  PGDATA: /var/lib/postgresql/data/pgdata
+  

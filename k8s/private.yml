@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: private
+  namespace: practica
+type: Opaque
+data:
+  POSTGRES_PASSWORD: ZGJwYXNz
+  POSTGRES_USER: ZGJ1c2Vy
