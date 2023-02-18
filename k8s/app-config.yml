@@ -11,6 +11,3 @@ data:
   FLASK_RUN_HOST: "0.0.0.0"
   DB_HOSTNAME: svc-database
   DB_PORT: "5432"
-  #DB_NAME: flask_db
-  #DB_USERNAME: dbuser
-  #DB_PASSWORD: dbpass
