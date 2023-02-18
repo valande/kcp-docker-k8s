@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-db-headless
+  labels:
+    app: database
+spec:
+  ports:
+  - port: 5432
+    name: headless
+  clusterIP: None
+  selector:
+    app: database
