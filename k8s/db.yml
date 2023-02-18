@@ -1,17 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: valdb-headless
-  labels:
-    app: nginx
-spec:
-  ports:
-  - port: 5432
-    name: web
-  clusterIP: None
-  selector:
-    app: database
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -20,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: database
-  serviceName: "valdb-headless"
+  serviceName: svc-db-headless
   replicas: 1
   template:
     metadata:
@@ -33,16 +19,18 @@ spec:
         image: valande/valdb:1.0
         envFrom:
         - configMapRef:
-            name: dbconfig
+            name: database-config
+        - secretRef:
+            name: private
         ports:
         - containerPort: 5432
           name: database
         volumeMounts:
-        - name: dbvol
+        - name: data
           mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
   - metadata:
-      name: dbvol
+      name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "standard"
