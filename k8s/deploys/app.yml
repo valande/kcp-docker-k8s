@@ -35,6 +35,11 @@ spec:
             configMapKeyRef:
               name: database-config
               key: POSTGRES_DB
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: database-config
+              key: DB_PORT
         ports:
         - containerPort: 5000
           name: microservice
