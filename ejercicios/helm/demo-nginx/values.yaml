@@ -1,3 +1,6 @@
+mysql:
+  enabled: false
+
 contenido: |+
   <h1>Web de prueba. VALOR POR DEFECTO</h1>
   <p>Gracias por acceder</p>
