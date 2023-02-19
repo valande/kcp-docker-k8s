@@ -1,0 +1,26 @@
+config:
+  microservice:
+    app:
+      tunnelport: 8000
+    flask:
+      app: valapp.py
+      debug: true
+      host: 0.0.0.0
+  database:
+    tunnelport: 7777
+    db: flask_db
+    volume: /var/lib/postgresql/data
+    pgdata: /var/lib/postgresql/data/pgdata
+    private:
+      user: ZGJ1c2Vy
+      password: ZGJwYXNz
+
+service:
+  microservice:
+    type: LoadBalancer
+    port: 5000
+    targetPort: 5000
+  database:
+    type: LoadBalancer
+    port: 5432
+    targetPort: 5432

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice # helm-conf
+  namespace: practica
+spec:
+  selector:
+    matchLabels:
+      app: microservice # helm-conf
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: microservice # helm-conf
+    spec:
+      containers:
+      - name: microservice
+        image: valande/microservice # helm-conf
+        envFrom:
+        - configMapRef:
+            name: {{ include "contkube.fullname" . }}-microconf
+        env:
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "contkube.fullname" . }}-private
+              key: POSTGRES_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "contkube.fullname" . }}-private
+              key: POSTGRES_PASSWORD
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "contkube.fullname" . }}-dbconf
+              key: POSTGRES_DB
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "contkube.fullname" . }}-dbconf
+              key: DB_PORT
+        ports:
+        - containerPort: 5000 # helm-conf
+          name: microservice # helm-conf

@@ -40,3 +40,4 @@
 * [__Instalación y Configuración__](../README.md#setup)
 * [__Instrucciones para ejecutar en entorno local__](../README.md#rc_local)
 * [__Instrucciones para ejecutar en Kubernetes__](#main)
+* [__Instrucciones para desplegar con Helm__](../charts/README.md#main)

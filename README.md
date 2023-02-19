@@ -11,6 +11,7 @@ Permite mantener un torneo de jugadores basado en puntos por victoria y empate, 
 * [__Instalación y Configuración__](#setup)
 * [__Instrucciones para ejecutar en entorno local__](#rc_local)
 * [__Instrucciones para ejecutar en Kubernetes__](./k8s/README.md)
+* [__Instrucciones para desplegar con Helm__](./charts/README.md#main)
 
 
 <a name="arch"></a>
@@ -26,7 +27,7 @@ Para crear o actualizar el torneo, hazlo de la siguiente manera:
 * `http(s)://<url>/reset` borra todos los datos (reinicia el sistema al completo).
 * `http(s)://<url>` muestra la clasificación (por defecto).
 
-Puedes usar un navegador web o el comando `curl` para llamar a los endpoints.
+Puedes visitar una url mediante navegador web, o usar `curl` para llamar a los endpoints.
 ```
 curl http(s)://<url>/<action>/player
 ```
@@ -36,7 +37,6 @@ curl http(s)://<url>/<action>/player
 # Instalación y Configuración
 
 TODO
-
 
 
 
