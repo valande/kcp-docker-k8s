@@ -1,0 +1,18 @@
+GRACIAS POR INSTALAR {{ .Chart.Name }}
+GRACIAS POR INSTALAR {{ include "demo-nginx.fullname" . }}
+
+Nombre de release utilizado {{ include "demo-nginx.fullname" . }}
+Demostración de helpers
+
+name: {{ include "demo-nginx.fullname" . }}
+fullname: {{ include "demo-nginx.fullname" . }}
+chart: {{ include "demo-nginx.chart" . }}
+labels (en nueva linea e indentados)
+{{- include "demo-nginx.labels" . | nindent 2 }}
+selectorLabels (indentados)
+{{- include "demo-nginx.selectorLabels" . | nindent 2 }}
+
+Para más detalles puedes ejecutar:
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+  $ kubectl get pod
