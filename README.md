@@ -1,5 +1,5 @@
 <a name="main"></a>
-# __Práctica Pablo Cazallas - Contenedores, más que VMs__
+# __Práctica Pablo Cazallas - Contenedores__
 
 `contkube` es una aplicación web desarrollada en Python con las librerías `Flask` y `psycopg` y conectada a un backend con base de datos `Postgres`.  
 Permite mantener un torneo de jugadores basado en puntos por victoria y empate, sin límite de participantes.  
