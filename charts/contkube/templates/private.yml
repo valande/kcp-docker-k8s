@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "contkube.fullname" . }}-private # helm-conf
-  namespace: practica
+  name: {{ include "contkube.fullname" . }}-priv
+  namespace: {{ .Values.namespace }}
 type: Opaque
 data:
-  {{- with .Values.config.database.private }}
-  POSTGRES_PASSWORD: {{ .user }} 
-  POSTGRES_USER: {{ .password }}
+  {{- with .Values.config.database }}
+  POSTGRES_USER: {{ .user }} 
+  POSTGRES_PASSWORD: {{ .password }}
   {{- end }}

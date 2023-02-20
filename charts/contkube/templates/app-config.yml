@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "contkube.fullname" . }}-microconf
-  namespace: practica
+  name: {{ include "contkube.fullname" . }}-appconf
+  namespace: {{ .Values.namespace }}
 data:
-  APP_PORT: "5000" # helm-conf
-  APP_TUNNEL_PORT: "8000" # helm-conf
+  APP_PORT: "5000"
   FLASK_APP: valapp.py
-  FLASK_DEBUG: "true" # helm-conf
-  FLASK_RUN_HOST: "0.0.0.0"
-  DB_SERVICE: svc-database # helm-conf
+  DB_SERVICE: svc-database #{{ include "contkube.fullname" . }}-svc-db
+  {{- with .Values.config.microservice }}
+  APP_TUNNEL_PORT: {{ .tunnelport | quote }}
+  FLASK_DEBUG: {{ .debug | quote }}
+  FLASK_RUN_HOST: {{ .host | quote }}
+  {{- end }}
