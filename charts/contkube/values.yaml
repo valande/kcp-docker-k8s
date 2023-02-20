@@ -1,26 +1,34 @@
+namespace: practica
+
+images:
+  microservice: valande/microservice
+  database: valande/backend
+
+replicaCount: 3
+
 config:
   microservice:
-    app:
-      tunnelport: 8000
-    flask:
-      app: valapp.py
-      debug: true
-      host: 0.0.0.0
+    tunnelport: 5000
+    debug: true
+    host: 0.0.0.0
   database:
-    tunnelport: 7777
-    db: flask_db
-    volume: /var/lib/postgresql/data
+    terminationGrace: 10
+    tunnelport: 5432
+    dbname: flask_db
     pgdata: /var/lib/postgresql/data/pgdata
-    private:
-      user: ZGJ1c2Vy
-      password: ZGJwYXNz
+    user: ZGJ1c2Vy
+    password: ZGJwYXNz
 
 service:
   microservice:
     type: LoadBalancer
-    port: 5000
-    targetPort: 5000
   database:
     type: LoadBalancer
-    port: 5432
-    targetPort: 5432
+
+volumeMount:
+  enabled: true
+  path: /var/lib/postgresql/data
+  name: data
+  volumename:
+  size: 4Gi
+  storageclass: "standard"
