@@ -10,7 +10,7 @@ Permite mantener un torneo de jugadores basado en puntos por victoria y empate, 
 * [__Funcionamiento__](#arch)
 * [__Instalación y Configuración__](#setup)
 * [__Instrucciones para ejecutar en entorno local__](#rc_local)
-* [__Instrucciones para ejecutar en Kubernetes__](./k8s/README.md)
+* [__Instrucciones para desplegar en Kubernetes__](./k8s/README.md)
 * [__Instrucciones para desplegar con Helm__](./charts/README.md#main)
 
 

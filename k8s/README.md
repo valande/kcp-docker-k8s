@@ -1,5 +1,5 @@
 <a name="main"></a>
-# __Instrucciones para ejecutar en Kubernetes__
+# __Instrucciones para desplegar en Kubernetes__
 ## TO DO:
 
 * Describe los recursos creados y documenta lo que sea configurable
@@ -39,5 +39,5 @@
 * [__Funcionamiento__](../README.md#arch)
 * [__Instalación y Configuración__](../README.md#setup)
 * [__Instrucciones para ejecutar en entorno local__](../README.md#rc_local)
-* [__Instrucciones para ejecutar en Kubernetes__](#main)
+* [__Instrucciones para desplegar en Kubernetes__](#main)
 * [__Instrucciones para desplegar con Helm__](../charts/README.md#main)
