@@ -1,1 +1,13 @@
-Prueba
+Gracias por instalar el chart {{ .Chart.Name }} ({{ include "contkube.chart" . }})
+Release name: {{ .Release.Name }}
+
+labels:
+{{- include "contkube.labels" . | nindent 2 }}
+
+selectorLabels:
+{{- include "contkube.selectorLabels" . | nindent 2 }}
+
+Para más detalles puedes ejecutar:
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+  $ kubectl get pod
