@@ -19,7 +19,7 @@ spec:
         {{- include "contkube.selectorLabels" . | nindent 8 }}
         app: database
     spec:
-      terminationGracePeriodSeconds: 10
+      terminationGracePeriodSeconds: {{ .Values.config.database.graceTime }}
       containers:
       - name: c-db
         image: {{ .Values.images.database }}
