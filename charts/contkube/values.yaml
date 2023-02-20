@@ -21,9 +21,9 @@ config:
 
 service:
   microservice:
-    type: LoadBalancer
+    type: ClusterIP
   database:
-    type: LoadBalancer
+    type: ClusterIP
 
 volumeMount:
   enabled: true
