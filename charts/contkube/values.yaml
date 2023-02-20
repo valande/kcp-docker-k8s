@@ -29,9 +29,8 @@ volumeMount:
   enabled: true
   path: /var/lib/postgresql/data
   name: data
-  volumename:
   size: 4Gi
-  storageclass: "standard"
+  storageClass: standard
 
 ingress:
   enabled: true

@@ -31,15 +31,19 @@ spec:
         ports:
         - containerPort: 5432
           name: db-port
+        {{- if .Values.volumeMount.enabled }}
         volumeMounts:
-        - name: data
-          mountPath: /var/lib/postgresql/data
+        - name: {{ .Values.volumeMount.name }}
+          mountPath: {{ .Values.volumeMount.path }}
+        {{- end }}
+  {{- if .Values.volumeMount.enabled }}
   volumeClaimTemplates:
   - metadata:
-      name: data
+      name: {{ .Values.volumeMount.name }}
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "standard"
+      storageClassName: {{ .Values.volumeMount.storageClass | quote }}
       resources:
         requests:
-          storage: 4Gi
+          storage: {{ .Values.volumeMount.size }}
+  {{- end }}
