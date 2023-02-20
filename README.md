@@ -50,7 +50,8 @@ Esto dependerá del tipo de despliegue realizado y la configuración correspondi
 # __Instalación y Configuración__
 
 ## Utiliza imágenes ya disponibles (recomendado)
-Puedes descargar y utilizar las imágenes ya creadas, disponibles en el [hub de docker](https://docs.docker.com/docker-hub/):
+Puedes descargar y utilizar las imágenes ya creadas, disponibles en el [hub de docker](https://docs.docker.com/docker-hub/).  
+Este paso no será necesario en caso de utilizar [docker compose](https://docs.docker.com/compose/) para el despliegue.
 ```
  $ docker pull valande/microservice
  $ docker pull valande/backend
@@ -69,7 +70,7 @@ Puedes modificar estos archivos para personalizarlas a tu gusto y [construirlas]
 ```
 
 * NOTA:   
-  Si utilizas [docker compose](https://docs.docker.com/compose/) para el despliegue de la aplicación, necesitarás revisar el fichero `.env` y modificar los parámetros `APP_IMAGE` (microservicio) y `DB_IMAGE` (backend) para que hagan uso de las imágenes que construyas.  
+  Si utilizas [docker compose](https://docs.docker.com/compose/) para el despliegue de la aplicación, necesitarás revisar el fichero `.env` y modificar los valores de los parámetros `APP_IMAGE` (microservicio) y `DB_IMAGE` (backend), para que hagan uso de las imágenes construídas.  
 
 <br>
 
@@ -95,9 +96,10 @@ Se trata de un fichero en el que se definen las diferentes variables de entorno 
  DB_VOLUME_DIR=/var/lib/postgresql/data         # Volumen de docker para el contenedor del backend
 ```
 
-* NOTA:   
+* NOTAS:   
   Este fichero es consumido únicamente por docker compose.  
-  Si realizas un despliegue manual, tendrás que modificar estos valores editando los ficheros Dockerfile descritos previamente en *Construye tus propias imágenes*.
+  Si realizas un despliegue manual, tendrás que modificar estos valores editando los ficheros Dockerfile descritos previamente en *Construye tus propias imágenes*.  
+  Se recomienda encarecidamente modificar el valor del parámetro `DB_PASSWORD` en todos los casos.
 
 <br>
 
@@ -105,13 +107,13 @@ Se trata de un fichero en el que se definen las diferentes variables de entorno 
 # __Instrucciones para despliegue en entorno local__
 
 ## Despliegue automático (recomendado)
-Para desplegar la aplicación al completo, basta con ejecutar el siguiente comando, en el directorio raíz:
+Para desplegar la aplicación basta con ejecutar el siguiente comando en el directorio raíz:
 ```
  $ cd /path/to/project
  $ docker compose up -d
 ```
 
-Si previamente deseas construir las imágenes, añade el flag `--build`:
+Si previamente deseas construir las imágenes, añade el flag `--build` al comando:
 ```
  $ docker compose up -d --build
 ```
@@ -119,7 +121,7 @@ Si previamente deseas construir las imágenes, añade el flag `--build`:
 El flag `-d` indica a docker compose que debe ejecutarse en segundo plano y no mostrar salida por consola de comandos.  
 Cuando el comando `docker compose` termine, ya deberías poder acceder a la url `http://localhost:8000` de manera que se muestre la aplicación web.  
 
-### Troubleshooting
+### *Troubleshooting*
 Si la web no responde, ya sea mediante `curl` o por medio de un navegador web, probablemente hay algún problema con el despliegue:
 * De configuración: 
     * Revisar los parámetros establecidos en el fichero *.env*.
@@ -134,9 +136,13 @@ Si la web no responde, ya sea mediante `curl` o por medio de un navegador web, p
 * __IMPORTANTE: Se desaconseja desplegar la aplicación de esta manera, salvo depuración o testeo de la misma.__
 
 Esta manera es la más propensa a cometer errores, además de ser la más costosa de realizar, teniendo que recordar muchos comandos y parámetros.  
-Si aún así estás interesado, puedes arrancar contenedores, completamente independientes y con configuración personalizada, haciendo uso de [docker run](https://docs.docker.com/engine/reference/run/).
+Si aún así estás interesado, puedes arrancar contenedores completamente independientes y con una configuración personalizada haciendo uso de [docker run](https://docs.docker.com/engine/reference/run/).
 
 ```
  $ docker run --name backend -p 7777:5432 valande/backend
  $ docker run --name microservicio -p 8000:5000 valande/microservice 
 ```
+
+<br>
+
+[Volver arriba](#main)
