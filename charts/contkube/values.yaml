@@ -32,3 +32,13 @@ volumeMount:
   volumename:
   size: 4Gi
   storageclass: "standard"
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: service.valande.io
+      paths:
+        - path: /
+          pathType: Prefix
+  
