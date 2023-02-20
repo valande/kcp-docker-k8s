@@ -10,6 +10,6 @@ TO DO
 * [__Descripción__](../README.md#main)
 * [__Funcionamiento__](../README.md#arch)
 * [__Instalación y Configuración__](../README.md#setup)
-* [__Instrucciones para ejecutar en entorno local__](../README.md#rc_local)
-* [__Instrucciones para desplegar en Kubernetes__](../k8s/README.md#main)
+* [__Instrucciones para despliegue en entorno local__](../README.md#rc_local)
+* [__Instrucciones para despliegue en Kubernetes__](../k8s/README.md#main)
 * [__Instrucciones para desplegar con Helm__](#main)
