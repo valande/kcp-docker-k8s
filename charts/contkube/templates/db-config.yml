@@ -3,6 +3,9 @@ kind: ConfigMap
 metadata:
   name: {{ include "contkube.fullname" . }}-dbconf
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "contkube.labels" . | nindent 4 }}
+    app: database
 data:
   DB_PORT: "5432"
   {{- with .Values.config.database }}

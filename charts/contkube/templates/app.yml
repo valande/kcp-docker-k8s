@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: {{ include "contkube.fullname" . }}-app
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "contkube.labels" . | nindent 4 }}
+    app: microservice
 spec:
   selector:
     matchLabels:

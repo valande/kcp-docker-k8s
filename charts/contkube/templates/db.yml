@@ -1,34 +1,40 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: database # helm-conf
+  name: {{ include "contkube.fullname" . }}-db
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "contkube.labels" . | nindent 4 }}
+    app: database
 spec:
   selector:
     matchLabels:
-      app: database # helm-conf
-  serviceName: svc-db-headless # helm-conf
+      {{- include "contkube.selectorLabels" . | nindent 6 }}
+      app: database
+  serviceName: {{ include "contkube.fullname" . }}-svc-hldb
   replicas: 1
   template:
     metadata:
       labels:
-        app: database # helm-conf
+        {{- include "contkube.selectorLabels" . | nindent 8 }}
+        app: database
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: backend
-        image: valande/backend # helm-conf
+      - name: c-db
+        image: {{ .Values.images.database }}
         envFrom:
         - configMapRef:
             name: {{ include "contkube.fullname" . }}-dbconf
         - secretRef:
-            name: {{ include "contkube.fullname" . }}-private
+            name: {{ include "contkube.fullname" . }}-priv
         ports:
-        - containerPort: 5432 # helm-conf
-          name: database
-        volumeMounts: # helm-conf
+        - containerPort: 5432
+          name: db-port
+        volumeMounts:
         - name: data
           mountPath: /var/lib/postgresql/data
-  volumeClaimTemplates: # helm-conf
+  volumeClaimTemplates:
   - metadata:
       name: data
     spec:

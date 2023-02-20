@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: {{ include "contkube.fullname" . }}-svc-app
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "contkube.labels" . | nindent 4 }}
+    app: microservice
 spec:
   selector:
     {{- include "contkube.selectorLabels" . | nindent 4 }}

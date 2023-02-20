@@ -1,13 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-db-headless # helm-conf
+  name: {{ include "contkube.fullname" . }}-svc-hldb
+  namespace: {{ .Values.namespace }}
   labels:
-    app: database # helm-conf
+    {{- include "contkube.labels" . | nindent 4 }}
+    app: database
 spec:
   ports:
-  - port: 5432 # helm-conf
+  - port: 5432
     name: headless
   clusterIP: None
   selector:
-    app: database # helm-conf
+    {{- include "contkube.selectorLabels" . | nindent 4 }}
+    app: database

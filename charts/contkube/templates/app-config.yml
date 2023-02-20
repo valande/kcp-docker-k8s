@@ -3,10 +3,13 @@ kind: ConfigMap
 metadata:
   name: {{ include "contkube.fullname" . }}-appconf
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "contkube.labels" . | nindent 4 }}
+    app: microservice
 data:
   APP_PORT: "5000"
   FLASK_APP: valapp.py
-  DB_SERVICE: svc-database #{{ include "contkube.fullname" . }}-svc-db
+  DB_SERVICE: {{ include "contkube.fullname" . }}-svc-db
   {{- with .Values.config.microservice }}
   APP_TUNNEL_PORT: {{ .tunnelport | quote }}
   FLASK_DEBUG: {{ .debug | quote }}
