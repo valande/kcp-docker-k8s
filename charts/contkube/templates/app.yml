@@ -1,35 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: microservice # helm-conf
-  namespace: practica
+  name: {{ include "contkube.fullname" . }}-app
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
-      app: microservice # helm-conf
-  replicas: 3
+      {{- include "contkube.selectorLabels" . | nindent 6 }}
+      app: microservice
+  replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
-        app: microservice # helm-conf
+        {{- include "contkube.selectorLabels" . | nindent 8 }}
+        app: microservice
     spec:
       containers:
-      - name: microservice
-        image: valande/microservice # helm-conf
+      - name: c-app
+        image: {{ .Values.images.microservice }}
         envFrom:
         - configMapRef:
-            name: {{ include "contkube.fullname" . }}-microconf
+            name: {{ include "contkube.fullname" . }}-appconf
         env:
-        - name: DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: {{ include "contkube.fullname" . }}-private
-              key: POSTGRES_USER
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ include "contkube.fullname" . }}-private
-              key: POSTGRES_PASSWORD
         - name: DB_NAME
           valueFrom:
             configMapKeyRef:
@@ -40,6 +32,16 @@ spec:
             configMapKeyRef:
               name: {{ include "contkube.fullname" . }}-dbconf
               key: DB_PORT
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "contkube.fullname" . }}-priv
+              key: POSTGRES_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "contkube.fullname" . }}-priv
+              key: POSTGRES_PASSWORD
         ports:
-        - containerPort: 5000 # helm-conf
-          name: microservice # helm-conf
+        - containerPort: 5000
+          name: app-port
