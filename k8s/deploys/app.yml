@@ -43,3 +43,11 @@ spec:
         ports:
         - containerPort: 5000
           name: microservice
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "50m"
+          requests:
+            memory: "50Mi"
+            cpu: "25m"
+
