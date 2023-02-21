@@ -38,14 +38,14 @@ resourceLimits:
     limits:
       memory: "100Mi"
       cpu: "50m"
-    request:
+    requests:
       memory: "50Mi"
       cpu: "25m"
   database:
     limits:
       memory: "100Mi"
       cpu: "50m"
-    request:
+    requests:
       memory: "50Mi"
       cpu: "25m"
 
