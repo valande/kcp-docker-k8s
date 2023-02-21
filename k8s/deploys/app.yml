@@ -13,6 +13,29 @@ spec:
       labels:
         app: microservice
     spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values: 
+                  - database
+              topologyKey: "failure-domain.beta.kubernetes.io/zone"
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values: 
+                  - microservice
+              topologyKey: "failure-domain.beta.kubernetes.io/zone"
       containers:
       - name: microservice
         image: valande/microservice

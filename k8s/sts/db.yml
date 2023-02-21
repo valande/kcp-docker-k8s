@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: database
+  namespace: practica
 spec:
   selector:
     matchLabels:
@@ -13,6 +14,18 @@ spec:
       labels:
         app: database
     spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values: 
+                  - microservice
+              topologyKey: "failure-domain.beta.kubernetes.io/zone"
       terminationGracePeriodSeconds: 10
       containers:
       - name: backend
