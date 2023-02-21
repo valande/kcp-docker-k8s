@@ -10,8 +10,10 @@ data:
   DB_PORT: "5432"
   {{- with .Values.config.database }}
   DB_TUNNEL_PORT:  {{ .tunnelport | quote }}
-  DB_VOLUME_DIR:  {{ .volume }}
   POSTGRES_DB:  {{ .dbname }}
   PGDATA:  {{ .pgdata }}
+  {{- end }}
+  {{- with .Values.volumeMount }}
+  DB_VOLUME_DIR:  {{ .path }}
   {{- end }}
   
