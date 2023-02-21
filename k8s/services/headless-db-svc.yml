@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: svc-db-headless
+  namespace: practica
   labels:
     app: database
 spec:
