@@ -48,3 +48,10 @@ spec:
         ports:
         - containerPort: 5000
           name: app-port
+        {{- if .Values.resourceLimits.enabled }}
+        {{- with .Values.resourceLimits.microservice }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        

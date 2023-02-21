@@ -32,6 +32,23 @@ volumeMount:
   size: 4Gi
   storageClass: standard
 
+resourceLimits:
+  enabled: true
+  microservice:
+    limits:
+      memory: "100Mi"
+      cpu: "50m"
+    request:
+      memory: "50Mi"
+      cpu: "25m"
+  database:
+    limits:
+      memory: "100Mi"
+      cpu: "50m"
+    request:
+      memory: "50Mi"
+      cpu: "25m"
+
 ingress:
   enabled: true
   className: nginx
