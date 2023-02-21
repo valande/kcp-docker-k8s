@@ -49,6 +49,44 @@ resourceLimits:
       memory: "50Mi"
       cpu: "25m"
 
+affinityRules:
+  enabled: true
+  microservice:
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values: 
+              - database
+          topologyKey: "failure-domain.beta.kubernetes.io/zone"
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values: 
+              - microservice
+          topologyKey: "failure-domain.beta.kubernetes.io/zone"
+  database:
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values: 
+              - microservice
+          topologyKey: "failure-domain.beta.kubernetes.io/zone"
+
 ingress:
   enabled: true
   className: nginx

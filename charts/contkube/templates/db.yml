@@ -19,18 +19,12 @@ spec:
         {{- include "contkube.selectorLabels" . | nindent 8 }}
         app: database
     spec:
+      {{- if .Values.affinityRules.enabled }}
+      {{- with .Values.affinityRules.database }}
       affinity:
-        podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values: 
-                  - microservice
-              topologyKey: "failure-domain.beta.kubernetes.io/zone"
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- end }}
       terminationGracePeriodSeconds: {{ .Values.config.database.graceTime }}
       containers:
       - name: c-db
