@@ -50,7 +50,7 @@ resourceLimits:
       cpu: "25m"
 
 autoscaling:
-  enabled: true
+  enabled: true         # "resourceLimits.enabled: true" required
   cpuAverageUse: 70
   maxReplicas: 20
   minReplicas: 3
