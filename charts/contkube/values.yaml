@@ -49,6 +49,12 @@ resourceLimits:
       memory: "50Mi"
       cpu: "25m"
 
+autoscaling:
+  enabled: true
+  cpuAverageUse: 70
+  maxReplicas: 20
+  minReplicas: 3
+
 affinityRules:
   enabled: true
   microservice:

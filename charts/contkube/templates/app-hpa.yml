@@ -1,0 +1,24 @@
+{{- $fullName := include "contkube.fullname" . -}}
+{{- if and .Values.autoscaling.enabled .Values.resourceLimits.enabled }}
+{{- with .Values.autoscaling }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ $fullName }}-app
+  namespace: practica
+spec:
+  maxReplicas: {{ .maxReplicas }}
+  minReplicas: {{ .minReplicas }}
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: {{ .cpuAverageUse }}
+        type: Utilization
+    type: Resource
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ $fullName }}-app
+{{- end }}
+{{- end }}
