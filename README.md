@@ -1,8 +1,8 @@
 <a name="main"></a>
 # __Práctica Pablo Cazallas - Contenedores__
 
-`contkube` es una aplicación web desarrollada en Python con las librerías `Flask` y `psycopg` y conectada a un backend con base de datos `Postgres`.  
-Permite mantener un torneo de jugadores basado en puntos por victoria y empate, sin límite de participantes.  
+`contkube` es una demo de aplicación web, desarrollada en Python con las librerías `Flask` y `psycopg` y conectada a un backend con base de datos `Postgres`.  
+Permite mantener un ranking de jugadores de un torneo basado en puntos, por victorias (+3) y empates (+1). 
 
 <br>
 
@@ -18,14 +18,14 @@ Permite mantener un torneo de jugadores basado en puntos por victoria y empate, 
 
 <a name="arch"></a>
 # __Funcionamiento__
-Todos los endpoints válidos muestran la lista de clasificados una vez han realizado la acción correspondiente.  
-Puedes visitar las urls mediante navegador web, o también puedes usar el comando `curl`.
+Todos los endpoints muestran la lista de clasificados, una vez han realizado la acción correspondiente.  
+Puedes visitar las urls mediante navegador web, o puedes usar el comando `curl` para el mismo cometido.
 
 ```
  $ curl http://<url>/<action>/player
 ```
 
-Para gestionar un torneo, se dispone los siguientes endpoints:
+Para l agestión del torneo, se dispone los siguientes endpoints:
 
 * `http://<url>/add/<player>` añade el jugador <player> al torneo, con 0 puntos iniciales.
 * `http://<url>/drop/<player>` elimina al jugador <player> del torneo, si existe.
@@ -36,12 +36,14 @@ Para gestionar un torneo, se dispone los siguientes endpoints:
 * `http://<url>` muestra la clasificación (por defecto).
 
 *`<url>`* puede referirse a una dirección IP o un nombre de dominio, y también podría incorporar una especificación de puerto.  
-Esto dependerá del tipo de despliegue realizado y la configuración correspondiente al mismo. Algunos ejemplos:
+Esto dependerá del tipo de despliegue realizado y la configuración correspondiente al mismo.  
+Algunos ejemplos:
 ```
  http://mi.sitio.com/add/julian
  http://mi.sitio.com:8080/win/julian
  http://192.168.192.168:5000/
  http://192.168.192.168/drop/lucas
+ http://mi.sitio2.com/restart
 ```
 
 <br>
@@ -76,7 +78,7 @@ Puedes modificar estos archivos para personalizarlas a tu gusto y [construirlas]
 
 ## Configuración y personalización
 Para ejecutar la aplicación con una configuración personalizada, se recomienda editar cuidadosamente el fichero `.env`, ubicado en el directorio raíz del proyecto.  
-Se trata de un fichero en el que se definen las diferentes variables de entorno utilizadas dentro de los contenedores:
+Se trata de un fichero en el que se definen las diferentes variables de entorno utilizadas dentro de los contenedores docker:
 ```
  $ cat .env
  APP_IMAGE="valande/microservice"               # Imagen del microservicio
