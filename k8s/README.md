@@ -2,8 +2,8 @@
 
 # __Instrucciones para desplegar en Kubernetes__
 
-En esta sección se detallan los recursos utilizados para ejecutar la aplicación en la plataforma [Kubernetes](https://kubernetes.io/), así como las instrucciones para hacerlos funcionar de la manera correcta.  
-Existen diferentes entornos posibles para correr Kubernetes, entre los cuales están [minikube](https://minikube.sigs.k8s.io/docs/start/) y [GKE](https://cloud.google.com/kubernetes-engine?hl=es), ambos utilizados para la demostración.
+En esta sección se detallan los recursos utilizados para desplegar la aplicación en [Kubernetes](https://kubernetes.io/), así como las instrucciones para hacerla funcionar correctamente.  
+Existen diferentes entornos de Kubernetes, entre los cuales están [minikube](https://minikube.sigs.k8s.io/docs/start/) y [GKE](https://cloud.google.com/kubernetes-engine?hl=es), ambos utilizados para la demostración.
 
 
 <br>
